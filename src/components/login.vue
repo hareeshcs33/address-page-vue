@@ -20,7 +20,7 @@
           v-model="password"
         />
       </div>
-      <p v-if="!isValid">{{ message }}</p>
+      <p v-if="!isValid" class="error-message">{{ message }}</p>
       <button class="btn-login" @click="userLogin">Login</button>
     </div>
   </div>
@@ -35,23 +35,24 @@ export default {
       username: "",
       password: "",
       userData: userData,
-      message: null
+      message: null,
+      isValid: false
     };
   },
   methods: {
     userLogin() {
-      const isValid = this.userData.users.some(element => {
+      this.isValid = this.userData.users.some(element => {
         return (
           element.username == this.username && element.password == this.password
         );
       });
-      if (!isValid) {
+      if (!this.isValid) {
         this.message = "username/password are not correct";
       } else {
         this.message = null;
         this.username = "";
         this.password = "";
-        window.location.href = "http://localhost:8080/address";
+        this.$router.push("/address");
       }
     }
   }
@@ -95,5 +96,9 @@ h1 {
   width: 150px;
   font-size: 15px;
   padding: 5px 10px;
+}
+.error-message {
+  color: red;
+  font-weight: bold;
 }
 </style>

@@ -43,7 +43,6 @@ export default {
   },
   methods: {
     addAdress() {
-      console.log("addAdress");
       this.userAddressess.push({
         add: "Sample Road Sample Address 1st main street United Kingdom",
         isEdit: false
@@ -55,6 +54,10 @@ export default {
     },
     editCard(index) {
       this.userAddressess[index].isEdit = true;
+      localStorage.setItem(
+        "userAddressess",
+        JSON.stringify(this.userAddressess)
+      );
     },
     deleteCard(index) {
       this.userAddressess.splice(index, 1);

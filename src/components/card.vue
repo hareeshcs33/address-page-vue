@@ -30,7 +30,6 @@ export default {
   },
   methods: {
     editCard(index) {
-      console.log("editCard");
       this.$emit("editCard", index);
     },
     deleteCard(index) {
